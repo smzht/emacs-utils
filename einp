@@ -1,0 +1,56 @@
+#!/bin/bash
+
+# -*- mode: sh; coding: utf-8-unix -*-
+
+command_name=$(basename "$0")
+
+function usage_exit() {
+    cat << EOF >&2
+Usage: $command_name [-s]
+       $command_name -h
+EOF
+    exit $1
+}
+
+single_flg=0
+
+while getopts :hs opt; do
+    case $opt in
+        h)
+            usage_exit 0
+            ;;
+        s)
+            single_flg=1
+            ;;
+        \?)
+            usage_exit 2
+            ;;
+    esac
+done
+
+shift $(($OPTIND - 1))
+
+if [ $# -ne 0 ]; then
+    usage_exit 2
+fi
+
+temp=$(mktemp -t "$command_name.XXXXXXXXXX")
+
+trap 'rm -f "$temp"' 0
+
+if [ $single_flg -eq 0 ]; then
+    perl -0pe 's/\n$//'
+else
+    perl -0pe 's/\n/; /gm; s/; $//'
+fi > "$temp"
+
+einp=$(cat << EOF
+(progn
+  (require 'f)
+  (with-current-buffer (car (buffer-list))
+    (insert (f-read-text "$temp")))
+  )
+EOF
+)
+
+emacsclient -e "$einp" > /dev/null
