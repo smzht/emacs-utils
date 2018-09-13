@@ -46,9 +46,9 @@ fi > "$temp"
 
 einp=$(cat << EOF
 (progn
-  (require 'f)
   (with-current-buffer (car (buffer-list))
-    (insert (f-read-text "$temp")))
+    (insert-file-contents "$temp")
+    (goto-char (point-max)))
   )
 EOF
 )
