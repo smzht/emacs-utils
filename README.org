@@ -33,7 +33,7 @@ epeco -h
 #+BEGIN_EXAMPLE
 sleep 1000 & sleep 2000 & sleep 3000 &
 ps -ef | epeco | awk '{print $2}'
-ps -ef | epeco | awk '{print $2}' | xargs -i kill {}
+ps -ef | epeco | awk '{print $2}' | xargs -r kill
 
 find * -type d -name '.*' -prune -o -type d -print | epeco
 find * -type d -name '.*' -prune -o -type d -print | epeco | xargs -i emacsclient -n {}
@@ -42,10 +42,10 @@ history | tac | epeco | cut -b8-
 eval "$(history | tac | epeco | cut -b8-)" # xargs を使うと、cd などが上手く実行できない
 
 docker ps -a | epeco | awk '{print $1}'
-docker ps -a | epeco | awk '{print $1}' | xargs -i docker rm {}
+docker ps -a | epeco | awk '{print $1}' | xargs -r docker rm
 
 docker images | epeco | awk '{print $3}'
-docker images | epeco | awk '{print $3}' | xargs -i docker rmi {}
+docker images | epeco | awk '{print $3}' | xargs -r docker rmi
 #+END_EXAMPLE
 
 よく使うコマンドを alias 設定しておくのが良いと思います。
@@ -107,13 +107,18 @@ echo -e "ls\nls" | einp
 echo -e "ls\nls" | einp -s
 
 sleep 1000 & sleep 2000 & sleep 3000 &
-ps -ef | epeco | awk '{print $2}' | xargs -i echo kill {}
-ps -ef | epeco | awk '{print $2}' | xargs -i echo kill {} | einp
-ps -ef | epeco | awk '{print $2}' | xargs -i echo kill {} | einp -s
+ps -ef | epeco | awk '{print $2}' | xargs -r echo kill
+ps -ef | epeco | awk '{print $2}' | xargs -r echo kill | einp
 
 history | tac | epeco | cut -b8-
 history | tac | epeco | cut -b8- | einp
 history | tac | epeco | cut -b8- | einp -s
+
+docker ps -a | epeco | awk '{print \$1}' | xargs -r echo docker rm
+docker ps -a | epeco | awk '{print \$1}' | xargs -r echo docker rm | einp
+
+docker images | epeco | awk '{print \$3}' | xargs -r echo docker rmi
+docker images | epeco | awk '{print \$3}' | xargs -r echo docker rmi | einp
 #+END_EXAMPLE
 
 よく使うコマンドを alias 設定しておくのが良いと思います。
