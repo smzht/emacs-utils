@@ -114,11 +114,11 @@ history | tac | epeco | cut -b8-
 history | tac | epeco | cut -b8- | einp
 history | tac | epeco | cut -b8- | einp -s
 
-docker ps -a | epeco | awk '{print \$1}' | xargs -r echo docker rm
-docker ps -a | epeco | awk '{print \$1}' | xargs -r echo docker rm | einp
+docker ps -a | epeco | awk '{print $1}' | xargs -r echo docker rm
+docker ps -a | epeco | awk '{print $1}' | xargs -r echo docker rm | einp
 
-docker images | epeco | awk '{print \$3}' | xargs -r echo docker rmi
-docker images | epeco | awk '{print \$3}' | xargs -r echo docker rmi | einp
+docker images | epeco | awk '{print $3}' | xargs -r echo docker rmi
+docker images | epeco | awk '{print $3}' | xargs -r echo docker rmi | einp
 #+END_EXAMPLE
 
 よく使うコマンドを alias 設定しておくのが良いと思います。
