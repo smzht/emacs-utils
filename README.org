@@ -49,6 +49,7 @@ docker images | epeco | awk '{print $3}' | xargs -r docker rmi
 #+END_EXAMPLE
 
 よく使うコマンドを alias 設定しておくのが良いと思います。
+helm は M-a で全選択が機能しますので、候補を絞った後に利用すると便利です。
 
 *** 注意事項
 
@@ -121,6 +122,7 @@ docker images | epeco | awk '{print $3}' | xargs -r echo docker rmi | einp
 #+END_EXAMPLE
 
 よく使うコマンドを alias 設定しておくのが良いと思います。
+helm は M-a で全選択が機能しますので、候補を絞った後に利用すると便利です。
 
 *** 注意事項
 
