@@ -60,8 +60,6 @@ einp=$(cat << EOF
 EOF
 )
 
-output=$(emacsclient -e "$einp")
-
-if [ "$output" = nil ]; then
+if [[ $(emacsclient -e "$einp") = nil ]]; then
     message "buffer-list の先頭バッファが shell バッファではありません"
 fi

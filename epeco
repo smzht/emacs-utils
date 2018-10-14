@@ -75,9 +75,7 @@ else
     cat "$1"
 fi | cat > "$temp1" & # この行の cat は必要！
 
-output=$(emacsclient -e "$epeco")
-
-if [ "$output" = t ]; then
+if [[ $(emacsclient -e "$epeco") = t ]]; then
     cat "$temp2"
     rc=0
 else
