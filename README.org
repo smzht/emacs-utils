@@ -94,7 +94,6 @@ docker images | epeco | awk '{print $3}'
 docker images | epeco | awk '{print $3}' | xargs -r docker rmi
 #+END_EXAMPLE
 
-よく使うコマンドを alias 設定しておくのが良いと思います。
 helm は M-a で全選択が機能しますので、候補を絞った後に利用すると便利です。
 
 *** 注意事項
@@ -168,6 +167,14 @@ docker images | epeco | awk '{print $3}' | xargs -r echo docker rmi | einp
 #+END_EXAMPLE
 
 よく使うコマンドを alias 設定しておくのが良いと思います。
+
+#+BEGIN_EXAMPLE
+alias ek="ps -ef | epeco | awk '{print \$2}' | xargs -r echo kill | einp"
+alias eh="history | tac | epeco | cut -b8- | einp -s"
+alias edp="docker ps -a | epeco | awk '{print \$1}' | xargs -r echo docker rm | einp"
+alias edi="docker images | epeco | awk '{print \$3}' | xargs -r echo docker rmi | einp"
+#+END_EXAMPLE
+
 helm は M-a で全選択が機能しますので、候補を絞った後に利用すると便利です。
 
 *** 注意事項
