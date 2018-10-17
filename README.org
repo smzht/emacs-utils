@@ -56,7 +56,7 @@ Host <aliasname>
      RemoteForward  /tmp/server /tmp/emacs1000/server # 1000 の数字は、id -u の値に置き換える
 #+END_EXAMPLE
 
-２）ssh の接続先（接続には上記の <aliasname> を使う）の ~/.bashrc に以下の設定を行う
+２）ssh の接続先の ~/.bashrc に以下の設定を行う
 
 #+BEGIN_EXAMPLE
 if [ -S /tmp/server ]; then
@@ -65,7 +65,7 @@ if [ -S /tmp/server ]; then
 fi
 #+END_EXAMPLE
 
-３）以下のコマンドを発行してコネクションをクリアしてから、リモートの接続先に再接続する
+３）以下のコマンドを発行してコネクションをクリアしてから、リモートの接続先に <aliasname> で再接続する
 
 #+BEGIN_EXAMPLE
 M-x tramp-cleanup-all-connections
