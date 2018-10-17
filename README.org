@@ -46,7 +46,7 @@ epeco -h
 
 tramp の接続先から epeco-sync や以降で紹介する einp を使う場合は、以下の設定を行ってください。
 
-１）tramp の接続元（emacs を起動しているホスト）の ~/.ssh/config に以下のような設定を行う
+１）emacs を起動しているホストの ~/.ssh/config に以下のような設定を行う
 
 #+BEGIN_EXAMPLE
 Host <aliasname>
@@ -69,7 +69,7 @@ fi
 #+END_EXAMPLE
 
 ３）以下のコマンドを発行してコネクションをクリアしてから、<aliasname> に tramp で再接続し、
-shell を shell-mode で起動する
+M-x shell で shell を起動する
 
 #+BEGIN_EXAMPLE
 M-x tramp-cleanup-all-connections
@@ -83,9 +83,12 @@ cd ~/bin
 ln -s epeco-sync epeco
 #+END_EXAMPLE
 
-※ 接続先への ssh 接続は、tramp を介して行うようにしてください。（dired でリモートホストを
+５）以降の使用例を参考に、コマンドを利用する
+
+注）接続先への ssh 接続は、tramp を介して行うようにしてください。（dired でリモートホストを
 開き、そこで M-x shell を実行する。）ローカルホストで起動した shell から ssh コマンドで
-リモートホストに接続しても、本コマンドは利用できません。
+リモートホストに接続しても、本コマンドは利用できません。また、ssh コマンドでリモートホスト
+に接続してしまった場合は、３）を再実行してください。
 
 *** 使用例
 
