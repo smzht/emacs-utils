@@ -24,7 +24,7 @@ emacs が emacsclient と通信できるようになっており、helm が設�
 |--------------+----------+----------------------------------------------------------|
 | epeco-sync   | 同期     | ・入力するデータを全て取り込んでからコマンドが起動します |
 | 　　〃       | 　〃     | ・migemo が使えます                                      |
-| 　　〃       | 　〃     | ・ssh で接続した先でも利用できます（emacsclient は必要） |
+| 　　〃       | 　〃     | ・tramp で接続した先でも利用できます（emacsclient は必要） |
 |--------------+----------+----------------------------------------------------------|
 
 使うコマンドを epeco という名称でシンボリックリンクしてお使いください。
@@ -42,11 +42,11 @@ epeco -h
 
 絞り込み文字列の初期値を設定するオプションです。
 
-*** ssh の接続先から利用する場合の設定
+*** tramp の接続先から利用する場合の設定
 
-ssh の接続先から epeco-sync や以降で紹介する einp を使う場合は、以下の設定を行ってください。
+tramp の接続先から epeco-sync や以降で紹介する einp を使う場合は、以下の設定を行ってください。
 
-１）ssh の接続元の ~/.ssh/config に以下のような設定を行う
+１）tramp の接続元（emacs を起動しているホスト）の ~/.ssh/config に以下のような設定を行う
 
 #+BEGIN_EXAMPLE
 Host <aliasname>
@@ -59,7 +59,7 @@ Host <aliasname>
 ※ OpenSSH 6.7 でサポートされた Unix domain socket forwarding の機能を使っています
 - https://www.openssh.com/txt/release-6.7
 
-２）ssh の接続先の ~/.bashrc に以下の設定を行う
+２）tramp の接続先の ~/.bashrc に以下の設定を行う
 
 #+BEGIN_EXAMPLE
 if [ -S /tmp/server ]; then
@@ -68,11 +68,24 @@ if [ -S /tmp/server ]; then
 fi
 #+END_EXAMPLE
 
-３）以下のコマンドを発行してコネクションをクリアしてから、リモートの接続先に <aliasname> で再接続する
+３）以下のコマンドを発行してコネクションをクリアしてから、<aliasname> に tramp で再接続し、
+shell を shell-mode で起動する
 
 #+BEGIN_EXAMPLE
 M-x tramp-cleanup-all-connections
 #+END_EXAMPLE
+
+４）コマンドパスの通ったディレクトリ（~/bin 等）に epeco-sync と einp（以降で説明）を複写し、
+以下のコマンドにより、epeco コマンドを利用できるようにする
+
+#+BEGIN_EXAMPLE
+cd ~/bin
+ln -s epeco-sync epeco
+#+END_EXAMPLE
+
+※ 接続先への ssh 接続は、tramp を介して行うようにしてください。（dired でリモートホストを
+開き、そこで M-x shell を実行する。）ローカルホストで起動した shell から ssh コマンドで
+リモートホストに接続しても、本コマンドは利用できません。
 
 *** 使用例
 
