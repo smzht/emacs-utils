@@ -56,6 +56,9 @@ Host <aliasname>
      RemoteForward  /tmp/server /tmp/emacs1000/server # 1000 の数字は、id -u の値に置き換える
 #+END_EXAMPLE
 
+※ OpenSSH 6.7 でサポートされた Unix domain socket forwarding の機能を使っています
+- https://www.openssh.com/txt/release-6.7
+
 ２）ssh の接続先の ~/.bashrc に以下の設定を行う
 
 #+BEGIN_EXAMPLE
