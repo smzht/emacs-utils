@@ -56,7 +56,7 @@ epeco=$(cat << EOF
                            :candidates (lambda ()
                                          (delete "" (split-string
                                                      (shell-command-to-string "cat $temp1") "\n")))
-                           :candidate-number-limit 1000
+                           :candidate-number-limit 10000
                            :action (helm-make-actions "Output"
                                                       (lambda (candidate)
                                                         (with-temp-buffer
