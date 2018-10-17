@@ -114,15 +114,11 @@ helm は M-a で全選択が機能しますので、候補を絞った後に利�
 
 *** 注意事項
 
-**** ● emacs が起動しているマシンの shell 上でのみ動作します
+**** ● shell-mode で動作するコマンドです
 
-helm は tramp による接続先でも動作しますが、本コマンドは内部で emacsclient を
-利用しているため、emacs を起動しているマシンの shell 上でのみしか動作しません。
-tramp の接続先でも動作する同様の仕組みを構築するには、以下で紹介している設定の
-ような comint と連携させる仕組み（zsh での zle による起動方法のような仕組み）が
-必要と思われます。
-
-- [[https://www49.atwiki.jp/ntemacs/pages/35.html][helm から comint の入力履歴を検索するための設定]]
+epeco-sync は ansi-term など shell-mode 以外の shell では動作しません。
+epeco-async は shell-mode 以外の shell でも動作しますが、以降で紹介する einp と組み合わせて
+利用する場合、shell-mode の shell が必要となります。
 
 *** 参考情報
 
@@ -197,4 +193,4 @@ helm は M-a で全選択が機能しますので、候補を絞った後に利�
 
 **** ● shell-mode のみで動作するコマンドです
 
-epeco と異なり、ansi-term など shell-mode 以外の shell では動作しません。
+ansi-term など shell-mode 以外の shell では動作しません。
