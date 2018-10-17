@@ -53,8 +53,9 @@ einp=$(cat << EOF
   (let ((buffer-name (buffer-name (car (buffer-list)))))
     (if (string-match "^\\*shell\\*" buffer-name)
         (with-current-buffer buffer-name
-          (insert-file-contents "$temp")
-          (goto-char (point-max)))
+          (insert (shell-command-to-string "cat $temp"))
+          (message "")
+          t)
       nil))
   )
 EOF
