@@ -49,20 +49,17 @@ trap 'rm -f "$temp1" "$temp2"' 0
 
 epeco=$(cat << EOF
 (progn
-  (let ((buffer-name (buffer-name (car (buffer-list)))))
-    (if (string-match "^\\*shell\\*" buffer-name)
-        (with-current-buffer buffer-name
-          (helm :sources (helm-build-sync-source "Epeco"
-                           :candidates (lambda ()
-                                         (delete "" (split-string
-                                                     (shell-command-to-string "cat $temp1") "\n")))
+  (let ((buffer (car (buffer-list))))
+    (if (string-match "^\\*shell\\*" (buffer-name buffer))
+        (let ((remote-name (file-remote-p (buffer-local-value 'default-directory buffer))))
+          (helm :sources (helm-build-in-file-source "Epeco" (concat remote-name "$temp1")
                            :candidate-number-limit 10000
                            :action (helm-make-actions "Output"
                                                       (lambda (candidate)
                                                         (with-temp-buffer
                                                           (dolist (cand (helm-marked-candidates))
                                                             (insert (format "%s\n" cand)))
-                                                          (write-region nil nil (concat (file-remote-p default-directory) "$temp2") nil 'nomsg))
+                                                          (write-region nil nil (concat remote-name "$temp2") nil 'nomsg))
                                                         (message "")))
                            :migemo t)
                 :quit-if-no-candidate t
@@ -70,7 +67,7 @@ epeco=$(cat << EOF
                 :prompt "[MIGEMO] pattern: "
                 :buffer "*helm epeco*")
           t)
-      nil)))
+      nil))))
 EOF
 )
 
