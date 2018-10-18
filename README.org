@@ -134,9 +134,9 @@ helm の source の設定方法については、以下を参照してくださ�
 - http://emacs.rubikitch.com/peco-wrapper/
 
 emacs でコマンドヒストリを使う方法としては以下の方法もあります。tramp の接続先でも
-動作しますし、接続先に emacsclient が必要ない、tramp の接続であれば ssh の接続に
-限らない（docker の exec による接続でも利用可能）などのメリットもあります。こちらの
-利用も検討ください。
+動作しますし、接続先に emacsclient が必要なく、tramp の接続であれば ssh の接続に
+限らない（docker-tramp.el による docker exec の接続でも利用可能）などのメリットも
+あります。こちらの利用も検討ください。
 
 - https://www49.atwiki.jp/ntemacs/pages/35.html
 - https://qiita.com/kai2nenobu/items/7af012e327b8dd078ba4
