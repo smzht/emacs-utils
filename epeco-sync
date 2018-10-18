@@ -63,7 +63,6 @@ epeco=$(cat << EOF
                                                           (write-region nil nil (concat remote-name "$temp2") nil 'nomsg))
                                                         (message "")))
                            :migemo t)
-                :quit-if-no-candidate t
                 :input "$query"
                 :prompt "[MIGEMO] pattern: "
                 :buffer "*helm epeco*")
