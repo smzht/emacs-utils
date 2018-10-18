@@ -52,7 +52,8 @@ epeco=$(cat << EOF
   (let ((buffer (car (buffer-list))))
     (if (string-match "^\\*shell\\*" (buffer-name buffer))
         (let ((remote-name (file-remote-p (buffer-local-value 'default-directory buffer))))
-          (helm :sources (helm-build-in-file-source "Epeco" (concat remote-name "$temp1")
+          (helm :sources (helm-build-in-file-source "Epeco"
+                           (concat remote-name "$temp1")
                            :candidate-number-limit 10000
                            :action (helm-make-actions "Output"
                                                       (lambda (candidate)
