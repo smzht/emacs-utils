@@ -45,7 +45,7 @@ trap 'rm -f "$temp"' 0
 if [ $single_flg -eq 0 ]; then
     perl -0pe 's/\n$//'
 else
-    perl -0pe 's/([^&; ] *)\n(.)/\1;\n\2/g; s/\n/ /g; s/ $//'
+    perl -0pe 's/\n$//; s/([^&; ] *)\n/\1;\n/g; s/\n/ /g'
 fi > "$temp"
 
 einp=$(cat << EOF
