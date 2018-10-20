@@ -57,11 +57,12 @@ epeco=$(cat << EOF
                                             (cl-loop for c in candidates
                                                      when (helm-mm-match c) collect c))
                    :candidate-number-limit 10000
-                   :action (helm-make-actions "Output" (lambda (candidate)
-                                                         (with-temp-buffer
-                                                           (dolist (cand (helm-marked-candidates))
-                                                             (insert (format "%s\n" cand)))
-                                                           (write-region nil nil "$temp2" nil 'nomsg)))))
+                   :action (helm-make-actions
+                            "Output" (lambda (candidate)
+                                       (with-temp-buffer
+                                         (dolist (cand (helm-marked-candidates))
+                                           (insert (format "%s\n" cand)))
+                                         (write-region nil nil "$temp2" nil 'nomsg)))))
         :input "$query"
         :buffer "*helm epeco*")
   t)

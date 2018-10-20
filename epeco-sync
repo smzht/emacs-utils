@@ -55,13 +55,13 @@ epeco=$(cat << EOF
           (helm :sources (helm-build-in-file-source "Epeco"
                            (concat remote-name "$temp1")
                            :candidate-number-limit 10000
-                           :action (helm-make-actions "Output"
-                                                      (lambda (candidate)
-                                                        (with-temp-buffer
-                                                          (dolist (cand (helm-marked-candidates))
-                                                            (insert (format "%s\n" cand)))
-                                                          (write-region nil nil (concat remote-name "$temp2") nil 'nomsg))
-                                                        (message "")))
+                           :action (helm-make-actions
+                                    "Output" (lambda (candidate)
+                                               (with-temp-buffer
+                                                 (dolist (cand (helm-marked-candidates))
+                                                   (insert (format "%s\n" cand)))
+                                                 (write-region nil nil (concat remote-name "$temp2") nil 'nomsg))
+                                               (message "")))
                            :migemo t)
                 :input "$query"
                 :prompt "[MIGEMO] pattern: "
