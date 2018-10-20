@@ -4,6 +4,11 @@
 
 Emacs の shell で動作するユティリティコマンド群です。
 
+本コマンドを作成した後、emacs lisp のみで動作する次の設定を考えました。こちらの利用の方が
+シンプルかと思いますので、併せて確認ください。
+
+- [[https://www49.atwiki.jp/ntemacs/pages/83.html][helm で動作する peco もどきのコマンドを作成]]
+
 ** ■ epeco
 
 emacs 上の shell で peco もどきを実現するコマンドです。データの絞り込みに helm を
