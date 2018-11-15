@@ -27,7 +27,7 @@ while getopts :hs opt; do
     esac
 done
 
-shift $(($OPTIND - 1))
+shift $((OPTIND - 1))
 
 if [ $# -ne 0 ]; then
     usage_exit 2

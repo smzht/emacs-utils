@@ -27,9 +27,9 @@ while getopts :hq: opt; do
     esac
 done
 
-shift $(($OPTIND - 1))
+shift $((OPTIND - 1))
 
-if [ $# -ne 0 -a $# -ne 1 ]; then
+if [ $# -ne 0 ] && [ $# -ne 1 ]; then
     usage_exit 2
 fi
 
@@ -38,7 +38,7 @@ function message() {
     exit 1
 }
 
-if [ $# -eq 1 -a ! -r "$1" ]; then
+if [ $# -eq 1 ] && [ ! -r "$1" ]; then
     message '指定したファイルを読み込むことができません'
 fi
 
