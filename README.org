@@ -108,6 +108,9 @@ find . -type d -name '.*' -prune -o -type d -print | epeco | xargs -i emacsclien
 history | tac | epeco | cut -b8-
 eval "$(history | tac | epeco | cut -b8-)" # xargs を使うと、cd などが上手く実行できない
 
+ghq list | epeco | cut -d '/' -f 2,3
+ghq list | epeco | cut -d '/' -f 2,3 | xargs -r -L 1 hub browse
+
 docker ps -a | epeco | awk '{print $1}'
 docker ps -a | epeco | awk '{print $1}' | xargs -r docker rm
 
@@ -130,6 +133,12 @@ epeco-async は shell-mode 以外の shell でも動作しますが、以降で�
 helm の source の設定方法については、以下を参照してください。
 
 - https://github.com/emacs-helm/helm/wiki/Developing
+
+ghq、hub の説明は以下のあたりを参照してください。
+hub browse で利用する BROWSER 環境変数の設定は、cygstart、wslstart、xdg-open などを指定する
+のが便利かと思います。
+
+- https://qiita.com/itkrt2y/items/0671d1f48e66f21241e2
 
 *** 関連情報
 
@@ -184,6 +193,12 @@ history | tac | epeco | cut -b8-
 history | tac | epeco | cut -b8- | einp
 history | tac | epeco | cut -b8- | einp -s
 
+ghq list -p | epeco | xargs -r -L 1 echo cd
+ghq list -p | epeco | xargs -r -L 1 echo cd | einp
+
+ghq list | epeco | cut -d '/' -f 2,3 | xargs -r -L 1 echo hub browse
+ghq list | epeco | cut -d '/' -f 2,3 | xargs -r -L 1 echo hub browse | einp
+
 docker ps -a | epeco | awk '{print $1}' | xargs -r echo docker rm
 docker ps -a | epeco | awk '{print $1}' | xargs -r echo docker rm | einp
 
@@ -196,6 +211,8 @@ docker images | epeco | awk '{print $3}' | xargs -r echo docker rmi | einp
 #+BEGIN_EXAMPLE
 alias ek="ps -ef | epeco | awk '{print \$2}' | xargs -r echo kill | einp"
 alias eh="history | tac | epeco | cut -b8- | einp -s"
+alias egc="ghq list -p | epeco | xargs -r -L 1 echo cd | einp"
+alias egb="ghq list | epeco | cut -d '/' -f 2,3 | xargs -r -L 1 echo hub browse | einp"
 alias edp="docker ps -a | epeco | awk '{print \$1}' | xargs -r echo docker rm | einp"
 alias edi="docker images | epeco | awk '{print \$3}' | xargs -r echo docker rmi | einp"
 #+END_EXAMPLE
