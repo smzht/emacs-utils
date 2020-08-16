@@ -19,7 +19,7 @@ while getopts :hq: opt; do
             usage_exit 0
             ;;
         q)
-            query="$OPTARG"
+            query=$OPTARG
             ;;
         \?)
             usage_exit 2
